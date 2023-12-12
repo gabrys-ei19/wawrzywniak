@@ -8,9 +8,9 @@
 </head>
 <body>
     <header>
-        <aside>
+        <section>
             <h1>Internetowy sklep z eko-warzywami</h1>
-        </aside>
+        </section>
         <nav>
             <ol>
                 <li>owoce</li>
