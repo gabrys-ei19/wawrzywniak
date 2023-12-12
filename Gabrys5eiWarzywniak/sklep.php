@@ -21,6 +21,22 @@
     </header>
     <main>
         <?php
+            @$nazwa = $_POST['nazwa'];
+            @$cena = $_POST['cena'];
+
+            if (isset($nazwa) && isset($cena) && $nazwa != NULL && $cena != NULL){
+                $link = mysqli_connect("localhost", "root", "", "dane2");
+
+                $zap = 'INSERT INTO `produkty`(`Rodzaje_id`, `Producenci_id`, `nazwa`, `ilosc`, `opis`, `cena`, `zdjecie`) VALUES (1,4,"'.$nazwa.'",10,"","'.$cena.'","owoce.jpg");';
+
+                $wyn = mysqli_query($link, $zap);
+                mysqli_close($link);
+                $nazwa = NULL;
+                $cena = NULL;
+                $_POST = NULL;
+            };
+        ?>
+        <?php
             $link = mysqli_connect("localhost", "root", "", "dane2");
 
             $zap = 'SELECT nazwa, ilosc, opis, cena, zdjecie FROM produkty WHERE Rodzaje_id BETWEEN 1 AND 2;';
@@ -37,24 +53,6 @@
                 echo ('<p>na stanie: '.$wyn['ilosc'].'</p>');
                 echo ('<h2>'.$wyn['cena'].'zł</h2>');
                 echo ("</article>");
-            };
-        ?>
-        <?php
-
-            @$nazwa = $_POST['nazwa'];
-            @$cena = $_POST['cena'];
-
-            if (isset($nazwa) && isset($cena) && $nazwa != NULL && $cena != NULL){
-                $link = mysqli_connect("localhost", "root", "", "dane2");
-
-                $zap = 'INSERT INTO `produkty`(`Rodzaje_id`, `Producenci_id`, `nazwa`, `ilosc`, `opis`, `cena`, `zdjecie`) VALUES (1,4,"'.$nazwa.'",10,"","'.$cena.'","owoce.jpg");';
-
-                $wyn = mysqli_query($link, $zap);
-                mysqli_close($link);
-                $nazwa = NULL;
-                $cena = NULL;
-                $_POST = NULL;
-
             };
         ?>
     </main>
